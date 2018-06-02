@@ -2,9 +2,25 @@ version: '3'
 services:
 
   web:
-    build: .
+#   每个服务都必须通过image指令指定镜像或build（需要Dockerfile）等来自动构建生成镜像
+    build:
+      context: ./dir
+      dockerfile: Dockerfile-alternate
     ports:
      - "5000:5000"
 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    depends_on:
+      - redis
+      - db
+
   redis:
     image: "redis:alpine"
+
+  db:
+    image: postgres
