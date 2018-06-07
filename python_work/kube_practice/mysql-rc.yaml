@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name:mysql
+spec:
+  replicas: 1
+  selector:
+     app: mysql
+  template:
+     metedata:
+       labes:
+         app: mysql
+     spec:
+       containers:
+       - name: mysql
+         images: mysql
+         ports:
+         - containerPort: 3306
+         env:
+         - name: MYSQL_ROOT_PASSWORD
+           value: "123456"
+
+
+
+
+
+
+
+
