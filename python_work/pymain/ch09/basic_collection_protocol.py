@@ -15,9 +15,10 @@
 #  对于序列，如果键为负整数，应从末尾往前数。换而言之，x[-n]应与x[len(x)-n]等效。 如果键的类型不合适(如对序列使用字符串键)，可能引发TypeError异常。
 #  对于序列，如果索引的类型是正确的，但不在允许的范围内，应引发IndexError异常。
 # 要了解更复杂的接口和使用的抽象基类(Sequence)
+from typing import Any
 
 
-def check_index(key):
+def check_index(key: int = 20) -> Any:
     """
     指定的键是否是可接受的索引?
     键必须是非负整数，才是可接受的。如果不是整数， 将引发TypeError异常;如果是负数，将引发Index Error异常(因为这个序列的长度是无穷的)
