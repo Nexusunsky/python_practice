@@ -6,7 +6,7 @@ def flatten(nested):
             nested + ''
         except TypeError:
             pass
-        else:  # 未发生异常时
+        else:  # 未发生异常时 为排除对于str类型的数据进行递归
             raise TypeError
         for sublist in nested:
             for element in flatten(sublist):
