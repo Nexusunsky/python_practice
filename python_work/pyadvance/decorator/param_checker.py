@@ -32,7 +32,8 @@ class Default(BaseChecker):
         required_args = self.required
         args, kwargs = self.actual
 
-        if not len(required_args):
+        # required_args is empty
+        if not required_args:
             return
 
         i = 0
