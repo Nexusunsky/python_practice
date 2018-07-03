@@ -32,9 +32,14 @@ def sample_16_4():
     print(coro_avg.send(5))
 
 
-if __name__ == '__main__':
+def sample_16_5():
     coro_avg = averager()
     print(getgeneratorstate(coro_avg))
     print(coro_avg.send(10))
     print(coro_avg.send(30))
     print(coro_avg.send(5))
+
+
+if __name__ == '__main__':
+    sample_16_4()
+    sample_16_5()
