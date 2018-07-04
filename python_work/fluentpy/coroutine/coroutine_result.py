@@ -1,5 +1,4 @@
 from collections import namedtuple
-from inspect import getgeneratorstate
 
 Result = namedtuple('Result', ['count', 'average'])
 
