@@ -9,6 +9,28 @@ Result = namedtuple('Result', ['count', 'average'])
 # 2,委派生成器相当于管道，一个委派生成器yield from 调用另一个子生成器，以此类推，
 # 最终，这个链条要以一个只使用yield表达式的简单生成器结束
 
+
+# PEP 380 Proposal:
+# 1, “子生成器产出的值都直接传给委派生成器的调用方（即客户端代码）。
+
+# 2, 使用 send() 方法发给委派生成器的值都直接传给子生成器。
+# 如果发送的值是 None，那么会调用子生成器的 __next__() 方法。
+# 如果发送的值不是 None，那么会调用子生成器的 send() 方法。
+# 如果调用的方法抛出 StopIteration 异常，那么委派生成器恢复运行。任何其他异常都会向上冒泡，传给委派生成器。
+
+# 3, 生成器退出时，生成器（或子生成器）中的 return expr 表达式会触发 StopIteration(expr) 异常抛出。
+
+# 4, yield from 表达式的值是子生成器终止时传给 StopIteration 异常的第一个参数。
+
+# ***** yield from 结构的另外两个特性与异常和终止有关:
+# 1, “传入委派生成器的异常，除了 GeneratorExit 之外都传给子生成器的 throw() 方法。
+# 如果调用 throw() 方法时抛出 StopIteration 异常，委派生成器恢复运行。
+# StopIteration 之外的异常会向上冒泡，传给委派生成器。”
+
+# 2, “如果把 GeneratorExit 异常传入委派生成器，或者在委派生成器上调用 close() 方法，那么在子生成器上调用 close() 方法，如果它有的话。
+# 如果调用 close() 方法导致异常抛出，那么异常会向上冒泡，传给委派生成器；否则，委派生成器抛出 GeneratorExit 异常。”
+
+
 # child Gen
 def averager():
     total = 0.0
