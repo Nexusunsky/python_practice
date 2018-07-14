@@ -14,7 +14,7 @@ Sample run::
 # BEGIN FLAGS_THREADPOOL
 from concurrent import futures
 
-from pyadvance.multithread.nginxdemo.flags_fl import get_flag, show, save_flag, main
+from fluentpy.coroutine.flags_fl import get_flag, show, save_flag, main
 
 MAX_WORKERS = 20  # <2>
 
